@@ -18,7 +18,7 @@
 		if(in_array($file_ext,$expensions)=== false){
 			$errors[]="extension not allowed, please choose an mp3 file.";
 		}
-		if($file_size > 20000000){
+		if($file_size > 10485760){
 		$errors[]='File size must not be larger than 10MB';
 		}				
 		if(empty($errors)==true){
@@ -42,9 +42,7 @@
 			$redir_link = '\players\\'.$song_id.'.html';
 			header("Location:".' '.$redir_link);
 
-			$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-			$redir_link = str_replace('upload.php', '\players\\'.$song_id.'.html', $actual_link);
-			header("Location:".' '.$redir_link);
+		
             exit();
 			}
 			else{
