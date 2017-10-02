@@ -1,3 +1,6 @@
+<center>
+<font size="6"><font color="4afafc"><h1 style="background-color:#ff67f2">V A P O R W A V E  &nbsp;  M A K E R</h1></font>
+<body background="watervap.jpg" bgproperties="fixed">
 <?php
 
 	if(isset($_FILES['song'])){
@@ -29,28 +32,31 @@
 			file_put_contents("songs_id/".$song_id.'.txt', $file_name);
 			var_dump($file_ext);
 			$item='example';
-			$tmp = exec('sox.exe'.' '.'E:\wamp64\www\songs\\'.$song_id.'.mp3'.' '.'E:\wamp64\www\songs_final\\'.$song_id.'.mp3'.' '.'speed 0.8 reverb 80 50 100 100 0 0' );
+			$tmp = exec('sox.exe'.' '.'C:\wamp64\www\songs\\'.$song_id.'.mp3'.' '.'C:\wamp64\www\songs_final\\'.$song_id.'.mp3'.' '.'speed 0.8 reverb 80 50 100 100 0 0' );
 			$errors = $tmp;
-			echo "Success";
-			$songexist_name = 'E:\wamp64\www\songs_final\\'.$song_id.'.mp3';
+			$songexist_name = 'C:\wamp64\www\songs_final\\'.$song_id.'.mp3';
             $song_exists = file_exists($songexist_name);
 			if($song_exists === true){
-			$playpage_template = file_get_contents("players\\playpage_template.html");	
-            $playpage = str_replace('SSONGIDD', $song_id, $playpage_template);
-            file_put_contents("players\\".$song_id.'.html', $playpage);
-			//The pinnacle of pajeet coding. Will fix some other time. Was supposed to give cross-vps support (?) but why the fuck even...
-			$redir_link = '\players\\'.$song_id.'.html';
+			$redir_link = '/player.php?songid='.$song_id;
 			header("Location:".' '.$redir_link);
 
 		
             exit();
 			}
 			else{
-					header("Location:/error.html");
+				echo $tmp;
+				?>
+				
+                    <h2>Oops that didn't go as planned :/</h2>
+<?php					
+					echo $errors;
 			}
 		}else{
-				header("Location:/error.html");
+			?>
+			    <h2>Oops that didn't go as planned :/</h2>
+				<?php
 				echo $errors;
+				echo $tmp;
 		}
 	}
 ?>

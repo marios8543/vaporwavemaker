@@ -1,3 +1,7 @@
+<center>
+<font size="6"><font color="4afafc"><h1 style="background-color:#ff67f2">V A P O R W A V E  &nbsp;  M A K E R</h1></font>
+<body background="watervap.jpg" bgproperties="fixed">
+
 <?php
 //Handy dandy little function from stack overfow that gets the page title to use as a song name
 function get_title($url){
@@ -25,14 +29,14 @@ echo "Error invalid link";
 }
 else{
 	//Downloads the song with youtube-dl
-	$tmp1 = exec("youtube-dl.exe --no-playlist --extract-audio --audio-format mp3"." ".$link." -o E:\wamp64\www\songs\\".$song_id.".%(ext)s");
+	$tmp1 = exec("youtube-dl.exe --no-playlist --extract-audio --audio-format mp3"." ".$link." -o C:\wamp64\www\songs\\".$song_id.".%(ext)s");
     var_dump($tmp1);
 	//Checks if the download was successfull
-	$dl_exist_name = "E:\wamp64\www\songs\\".$song_id.".mp3";
+	$dl_exist_name = "C:\wamp64\www\songs\\".$song_id.".mp3";
 	$dl_succ = file_exists($dl_exist_name);
 if($dl_succ === true){	
     //If so procceeds to proccess the song
-	$tmp2 = exec("sox.exe"." "."E:\wamp64\www\songs\\".$song_id.".mp3"." "."E:\wamp64\www\songs_final\\".$song_id.".mp3"." "."speed 0.8 reverb 80 50 100 100 0 0" );
+	$tmp2 = exec("sox.exe"." "."C:\wamp64\www\songs\\".$song_id.".mp3"." "."C:\wamp64\www\songs_final\\".$song_id.".mp3"." "."speed 0.8 reverb 80 50 100 100 0 0" );
 	var_dump($tmp2);
 	//Actually gets the page title and sets it as songname
 	$file_page = get_title($link);
@@ -43,18 +47,13 @@ setcookie("song_id_str", $song_id);
 $file_name = str_replace('&quot', "", $file_name_quot);
 //makes a text file with the song name (Again deprecated but used by the fallback player so not removing)
 file_put_contents("songs_id/".$song_id.".txt", $file_name);
-$songexist_name = "E:\wamp64\www\songs_final\\".$song_id.".mp3";
+$songexist_name = "C:\wamp64\www\songs_final\\".$song_id.".mp3";
 $song_exists = file_exists($songexist_name);
 var_dump($file_name);
 var_dump($songexist_name);
 var_dump($song_exists);
 if($song_exists === true){
-	//Makes an html page that contains an html5 player as well as download button (?) for the specific song. will incorporate sharing functionality in the future
-$playpage_template = file_get_contents("players\\playpage_template.html");	
-$playpage = str_replace('SSONGIDD', $song_id, $playpage_template);
-file_put_contents("players\\".$song_id.'.html', $playpage);
-			//The pinnacle of pajeet coding. Will fix some other time. Was supposed to give cross-vps support (?) but why the fuck even...
-			$redir_link = '\players\\'.$song_id.'.html';
+	        $redir_link = '/player.php?songid='.$song_id;
 			header("Location:".' '.$redir_link);
 }
 else{
