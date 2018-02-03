@@ -1,28 +1,39 @@
-<center>
-<font size="6"><font color="4afafc"><h1 style="background-color:#ff67f2">V A P O R W A V E  &nbsp;  M A K E R</h1></font>
-<h1>UPLOAD YOUR OWN SONG (.mp3 files only)</h1>
-<form action="vaporwave_mp3.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="song" />
-    <input type="submit"/>
-</form>
-<h2>...OR PASTE A YOUTUBE LINK</h2>
-(experimental. takes some time to finish)
-<form action="vaporwave_utube.php" method="POST">
-    <input type="text" name="link">
-	<input type="submit" name="submit" value="Submit :^)">
-</form>
-<body background="watervap.jpg" bgproperties="fixed">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- auto -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3403351651283256"
-     data-ad-slot="3395009983"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+<link rel="stylesheet" type="text/css" href="vaporwave.css">
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+<style>
+#submit {
+  position:relative;
+  left:900px;
+  top:400px;
+}
+</style>
+<div class="vapor">
+  <div class="content">
+    <img class="palm" src="https://68.media.tumblr.com/f091c3890383aa8d8d3129145d9e267d/tumblr_octcvgAWVb1u1vzz5o4_250.png" alt="Palm tree" />
+    <p>VAPORWAVE アンドルー</p>
+
+    <img class="checker" src="https://66.media.tumblr.com/3c6d3fe0c6992b87c698837b08e018a6/tumblr_octcz3HowU1u1vzz5o1_540.png" alt="The checkerboard floor represents the game that is life." />
+    <img class="palmrev" src="https://68.media.tumblr.com/f091c3890383aa8d8d3129145d9e267d/tumblr_octcvgAWVb1u1vzz5o4_250.png" alt="Palm trees to represent, almost laughably, the futility of nature being anything except aesthetic." />
+    <div class="image-upload">
+      <div id="upload">
+      <label for="FileInput">
+          <img id="upload-img" src="computer-vaporwave.png" style="cursor:pointer" onmouseover="this.src='computer-vaporwave.png'" onmouseout="computer-vaporwave.png'" alt="Injaz Msila" style="float:right;margin:7px" />
+      </label>
+      <form action="vaporwave_mp3.php" method="POST" enctype="multipart/form-data">
+          <input type="file" id="FileInput" name="song" style="cursor: pointer;  display: none"/>
+          <input type="image" src="start.gif" border="0" alt="Submit" id="submit"/>
+      </form>
+    </div>
+</div>
+   </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $( "#FileInput" ).change(function() {
+      $( "#Up" ).click();
+    });
 </script>
-</body>
-</center>
-
-
+<audio autoplay>
+  <source src="https://a.tumblr.com/tumblr_oat8zhArMY1u1vzz5o1.mp3" type="audio/mpeg">
+  Sucks. Your browser does not support the audio element.
+</audio>
